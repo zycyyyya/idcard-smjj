@@ -1,0 +1,134 @@
+{
+  "_comment": "私募基金管理人销售卡片数据模板 - 按12板块结构填写",
+  
+  "basic": {
+    "name": "机构简称",
+    "fullName": "机构全称私募基金管理有限公司",
+    "founded": "20XX年X月X日",
+    "licenseNumber": "PXXXXXX",
+    "scale": "X-X亿元",
+    "regCapital": "XXXX万元",
+    "paidCapital": "XXXX万元",
+    "location": "XX市XX区",
+    "employees": "XX人（全职），XX人投研",
+    "coreTeam": "XXX（职位，背景），XXX（职位，背景）"
+  },
+  
+  "products": [
+    {
+      "strategy": "策略名称",
+      "style": "策略特色/风格描述",
+      "performance": "业绩表现",
+      "note": "备注"
+    }
+  ],
+  
+  "managerBackground": "基金经理背景介绍...",
+  
+  "cases": [
+    {
+      "date": "20XX年X月",
+      "event": "事件描述",
+      "result": "结果描述"
+    }
+  ],
+  
+  "advantages": [
+    "核心优势1（有数据支撑）",
+    "核心优势2（有数据支撑）",
+    "核心优势3（有数据支撑）"
+  ],
+  
+  "risks": [
+    "具体风险点1",
+    "具体风险点2",
+    "具体风险点3",
+    "具体风险点4"
+  ],
+  
+  "marketEnvironment": "当前市场环境分析...",
+  
+  "marketFit": [
+    {
+      "theme": "市场主线1",
+      "fit": "高/中/低",
+      "note": "说明"
+    }
+  ],
+  
+  "recommendation": {
+    "position": "组合中的定位",
+    "clientType": "适配客户类型",
+    "holdingPeriod": "建议持有期限",
+    "productChoice": "具体产品选择",
+    "pairing": "搭配建议"
+  },
+  
+  "faq": [
+    {
+      "q": "问题1",
+      "a": "回答1（有层次：承认问题→解释原因→数据支撑→给出建议）"
+    },
+    {
+      "q": "问题2",
+      "a": "回答2"
+    },
+    {
+      "q": "问题3",
+      "a": "回答3"
+    },
+    {
+      "q": "问题4",
+      "a": "回答4"
+    }
+  ],
+  
+  "news": [
+    "舆情新闻1",
+    "舆情新闻2",
+    "舆情新闻3"
+  ],
+  
+  "reviews": [
+    "投资者评价1——评价人身份",
+    "投资者评价2——评价人身份",
+    "投资者评价3——评价人身份"
+  ],
+  
+  "appendix": {
+    "equity": "股权关系描述",
+    "career": "履历关联描述",
+    "mentorship": "师承/同门关系（无则写'无明确师承关系'）"
+  },
+  
+  "pantheon": {
+    "mastersComparison": [
+      {
+        "master": "巴菲特 Buffett",
+        "style": "价值投资/护城河",
+        "alignment": "高/中/低",
+        "overlap": "核心重叠点",
+        "difference": "核心差异点"
+      }
+    ],
+    "principles": [
+      {
+        "principle": "系统 > 直觉",
+        "fit": "高/中/低",
+        "evidence": "具体体现"
+      }
+    ],
+    "uniqueness": [
+      "独特性1",
+      "独特性2",
+      "独特性3"
+    ],
+    "quotes": [
+      {
+        "master": "大师名",
+        "quote": "大师语录",
+        "practice": "管理人实践对照"
+      }
+    ]
+  }
+}

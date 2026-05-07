@@ -1,0 +1,36 @@
+{
+  "name": "idcard-smjj",
+  "version": "1.0.0",
+  "description": "私募基金管理人销售卡片生成器 - 12板块+万神殿分析",
+  "main": "index.js",
+  "bin": {
+    "idcard-smjj": "./skill.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "私募",
+    "基金",
+    "销售卡片",
+    "万神殿分析",
+    "私募排排网",
+    "尽调报告"
+  ],
+  "author": "赖克宝 🐸",
+  "license": "MIT",
+  "dependencies": {
+    "docx": "^8.5.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/idcard-smjj.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/idcard-smjj/issues"
+  },
+  "homepage": "https://github.com/yourusername/idcard-smjj#readme"
+}
