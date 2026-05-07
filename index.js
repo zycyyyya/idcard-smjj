@@ -8,6 +8,7 @@ const { Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell,
         Header, Footer, PageNumber, PageBreak } = require('docx');
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 
 // 视觉设计规范
 const DESIGN = {
@@ -50,6 +51,68 @@ const PRINCIPLES = [
   "周期意识",
   "长期主义"
 ];
+
+/**
+ * 获取万神殿大师数据
+ * 优先调用 investment-masters skill，失败时使用内置数据
+ */
+function getMastersData() {
+  try {
+    // 尝试调用 investment-masters skill（可能在 skills/ 或 workspace/ 根目录）
+    const homeDir = process.env.HOME || process.env.USERPROFILE;
+    const possiblePaths = [
+      path.join(homeDir, '.openclaw', 'workspace', 'skills', 'investment-masters'),
+      path.join(homeDir, '.openclaw', 'workspace', 'investment-masters'),
+      path.join(process.cwd(), '..', 'investment-masters')
+    ];
+    
+    let skillPath = null;
+    for (const p of possiblePaths) {
+      if (fs.existsSync(p)) {
+        skillPath = p;
+        break;
+      }
+    }
+    
+    if (skillPath) {
+      // 读取本地 masters 数据
+      const mastersDir = path.join(skillPath, 'masters');
+      if (fs.existsSync(mastersDir)) {
+        const files = fs.readdirSync(mastersDir).filter(f => f.endsWith('.md'));
+        const masters = [];
+        
+        const masterMap = {
+          'buffett.md': { name: '巴菲特 Buffett', style: '价值投资/护城河', core: '长期持有优质标的' },
+          'howard_marks.md': { name: '霍华德·马克斯 Marks', style: '第二层思维/周期', core: '不研究收益，只研究风险' },
+          'tepper.md': { name: '泰珀 Tepper', style: '逆向投资', core: '极度悲观时买入' },
+          'bridgewater.md': { name: '达利欧 Dalio', style: '风险平价/全天候', core: '分散化是圣杯' },
+          'soros.md': { name: '索罗斯 Soros', style: '宏观/反射性', core: '承认错误立刻认错' },
+          'renaissance.md': { name: '西蒙斯 Simons', style: '量化/统计套利', core: '市场存在短期定价错误' },
+          'aqr.md': { name: '阿斯尼斯 Asness', style: '因子投资', core: '价值/动量长期有效' },
+          'ackman.md': { name: '阿克曼 Ackman', style: '集中持股/事件驱动', core: '书面退出标准' },
+          'hillhouse.md': { name: '张磊 Hillhouse', style: '长期主义/中国价值', core: '长期创造价值' },
+          'ark.md': { name: '伍德 Wood', style: '颠覆式创新', core: '创新解决问题' }
+        };
+        
+        for (const file of files) {
+          if (masterMap[file]) {
+            masters.push(masterMap[file]);
+          }
+        }
+        
+        if (masters.length >= 10) {
+          console.log('✅ 成功从 investment-masters skill 加载大师数据');
+          return masters;
+        }
+      }
+    }
+    
+    throw new Error('investment-masters skill 数据不完整');
+  } catch (error) {
+    console.log('⚠️ 无法调用 investment-masters skill，使用内置数据:', error.message);
+    return MASTERS; // 返回内置数据
+  }
+}
 
 /**
  * 创建标题段落
@@ -484,6 +547,7 @@ async function generateSalesCard(data, outputPath) {
 
 module.exports = {
   generateSalesCard,
+  getMastersData,
   MASTERS,
   PRINCIPLES,
   DESIGN

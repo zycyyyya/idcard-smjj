@@ -3,7 +3,7 @@
  * 用法：node skill.js --data data.json --output 销售卡片.docx
  */
 
-const { generateSalesCard } = require('./index.js');
+const { generateSalesCard, getMastersData } = require('./index.js');
 const fs = require('fs');
 const path = require('path');
 
@@ -102,10 +102,33 @@ async function main() {
     fs.mkdirSync(outputDir, { recursive: true });
   }
   
+  // 验证并补充万神殿数据
+  console.log('\n📚 加载万神殿大师数据...');
+  const mastersData = getMastersData();
+  
+  // 如果用户未提供完整的 mastersComparison，使用大师库作为参考
+  if (!data.pantheon) {
+    data.pantheon = {};
+  }
+  
+  if (!data.pantheon.mastersComparison || data.pantheon.mastersComparison.length === 0) {
+    console.log('⚠️ 警告：未提供万神殿大师对照数据，已加载参考模板');
+    console.log('💡 提示：请根据机构特点填写各大师的"重合度"、"核心重叠"、"核心差异"');
+    // 创建模板结构供参考
+    data.pantheon.mastersComparison = mastersData.map(m => ({
+      master: m.name,
+      style: m.style,
+      alignment: "待填写",
+      overlap: "待填写",
+      difference: "待填写"
+    }));
+  }
+  
   // 生成销售卡片
   try {
     await generateSalesCard(data, options.output);
     console.log('\n✅ 生成成功！');
+    console.log(`📄 输出文件：${options.output}`);
   } catch (err) {
     console.error(`❌ 生成失败：${err.message}`);
     process.exit(1);

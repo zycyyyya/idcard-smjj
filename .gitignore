@@ -1,0 +1,25 @@
+# 依赖
+node_modules/
+package-lock.json
+
+# 输出文件（用户生成的销售卡片）
+*.docx
+
+# 临时文件
+*.tmp
+*_tmp.*
+_tw_*.txt
+temp/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 日志
+*.log
