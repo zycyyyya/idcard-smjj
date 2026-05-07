@@ -1,4 +1,4 @@
-# IDcard-smjj 🐸
+# IDcard-smjj 
 
 私募基金管理人销售卡片生成器 - 自动生成符合标准格式的销售工具卡（.docx）
 
@@ -8,7 +8,7 @@
 - ✅ **万神殿分析**：集成AlphaGBM 10位投资大师框架对照
 - ✅ **视觉设计规范**：统一配色、排版、图标系统
 - ✅ **无中间文件**：直接输出干净的.docx文件
-- ✅ **GitHub Ready**：标准skill结构，可直接上传
+：标准技能结构，可直接上传
 
 ## 安装
 
@@ -30,18 +30,18 @@ const { generateSalesCard } = require('./index.js');
 
 const data = {
   basic: {
-    name: "滴海基金",
-    fullName: "上海滴海私募基金管理有限公司",
+名称: “滴海基金”,
+全称: “上海滴海私募基金管理有限公司”,
     // ... 其他字段
   },
-  products: [...],
-  cases: [...],
+产品: [...],
+案例: [...],
   // ... 其他板块
-  pantheon: {
-    mastersComparison: [...],
-    principles: [...],
-    uniqueness: [...],
-    quotes: [...]
+万神殿: {
+大师比较: [...],
+原则: [...],
+独特性: [...],
+引言: [...]
   }
 };
 
@@ -159,4 +159,4 @@ node skill.js --help
 
 ## 许可证
 
-MIT
+麻省理工学院
