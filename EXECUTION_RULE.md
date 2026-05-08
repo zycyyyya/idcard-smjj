@@ -86,15 +86,29 @@
 
 ---
 
-## Skill 使用方式
+## Skill 使用方式（推荐 v1.1.0 新功能）
 
-### 方式1：CLI命令
+### 方式1：智能生成（推荐）
 ```bash
 cd ~/.openclaw/workspace/skills/idcard-smjj
+
+# 步骤1：生成数据模板
+node skill.js --template 机构名_data.json
+
+# 步骤2：填写数据后验证
+node skill.js --validate 机构名_data.json
+
+# 步骤3：使用智能万神殿模板生成
+# 策略类型：债券/主观/价值/量化/CTA/医药
+node skill.js --data 机构名_data.json --output 机构名_销售卡片.docx --strategy 债券
+```
+
+### 方式2：基础生成
+```bash
 node skill.js --data 机构数据.json --output 销售卡片.docx
 ```
 
-### 方式2：Node.js模块
+### 方式3：Node.js模块
 ```javascript
 const { generateSalesCard } = require('./index.js');
 await generateSalesCard(data, '输出路径.docx');
@@ -139,6 +153,45 @@ await generateSalesCard(data, '输出路径.docx');
 
 ---
 
+## 最佳实践（v1.1.0）
+
+### 快速制作流程
+```
+1. 确认机构策略类型（债券/主观/价值/量化/CTA/医药）
+        ↓
+2. 生成数据模板：node skill.js --template 机构_data.json
+        ↓
+3. 填写基础信息（从尽调报告/网络搜索获取）
+        ↓
+4. 验证数据：node skill.js --validate 机构_data.json
+        ↓
+5. 智能生成：node skill.js --data 机构_data.json --output 机构_销售卡片.docx --strategy [类型]
+        ↓
+6. 检查质量报告，确认无误后交付
+```
+
+### 策略类型选择指南
+| 机构类型 | 策略参数 | 说明 |
+|---------|---------|------|
+| 债券策略私募 | `--strategy 债券` | 滴海、富涌谷等 |
+| 主观多头私募 | `--strategy 主观` | 枫泉投资等 |
+| 价值投资私募 | `--strategy 价值` | 高恩私募等 |
+| 量化私募 | `--strategy 量化` | 指增、市场中性 |
+| CTA私募 | `--strategy CTA` | 管理期货策略 |
+| 医药主题私募 | `--strategy 医药` | 专注医药投资 |
+
+### 常见问题
+**Q：智能模板生成的万神殿对照表需要修改吗？**  
+A：建议根据机构实际情况微调，但智能模板已提供合理的基础框架。
+
+**Q：数据验证不通过怎么办？**  
+A：根据错误提示补充缺失字段，警告项建议完善但非强制。
+
+**Q：没有尽调报告怎么办？**  
+A：通过网络搜索（私募排排网、公司官网、新闻报道）收集信息，标注数据来源。
+
+---
+
 **制定者**：赖克宝 🐸  
 **生效日期**：2026-05-08  
-**版本**：v1.0.0
+**版本**：v1.1.0（2026-05-08 更新智能模板功能）
